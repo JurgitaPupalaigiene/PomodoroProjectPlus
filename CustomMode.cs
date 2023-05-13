@@ -8,7 +8,7 @@ namespace PomodoroProjectPlus
 {
     internal class CustomMode
     {
-        
+
         public CustomMode() { }
 
         public void ChooseCustomMode()
@@ -19,24 +19,30 @@ namespace PomodoroProjectPlus
             if (userInput == 1)
             {
                 Console.WriteLine("Pomodoro clocks starts in 3 seconds");
-                //ojektas pradeda skaiciuoti intervalus
                 Thread.Sleep(3000);
-                while (true)
+                DateTime start = DateTime.Now;
+                while ((DateTime.Now - start).TotalSeconds < 1000)
                 {
                     MyTimer myTimer = new MyTimer(3);
                     myTimer.MyTimerStart();
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
                     MyWorkTimer myWorkTimer = new MyWorkTimer(5);
+                    MyBreakTimer myBreakTimer = new MyBreakTimer(3);
                     myWorkTimer.MyWorkTimerStarts();
                     Thread.Sleep(2000);
-                    Console.WriteLine("Press ENTER to quit");
-                    var key = Console.ReadKey();
-
-                    if (Console.ReadKey().Key == ConsoleKey.Enter)
+                    myBreakTimer.MyBreakTimerStarts();
+                    Thread.Sleep(2000);
+                    if (Console.KeyAvailable)
                     {
-                        break;
+                        ConsoleKeyInfo key = Console.ReadKey(true);
+                        if (key.Key == ConsoleKey.Enter)
+                        {
+                            break;
+                        }
+
                     }
                 }
+
             }
 
             else if (userInput == 2)
@@ -49,9 +55,9 @@ namespace PomodoroProjectPlus
                 Console.WriteLine("Sorry, you have choosen wrong button");
                 Console.WriteLine("Buy!");
             }
-            Console.WriteLine("Press any key to exit!");
-            Console.ReadKey();
-        }
-    }
-}
-
+                        Console.WriteLine("Press any key to exit!");
+                        Console.ReadKey();
+                    }
+                }
+            }
+      

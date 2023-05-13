@@ -21,12 +21,12 @@ namespace PomodoroProjectPlus
                 
                Console.Clear();
                 Console.WriteLine($"{i}");
-                Thread.Sleep(1000); //nezinau ka daro,kam reikalingas?
+                Thread.Sleep(1000);
                 
             }
             Console.WriteLine("Pomodoro Clock starts!!!");
             Thread.Sleep(2000);
-            Console.WriteLine("Concentrate and start you work");
+            Console.WriteLine("Concentrate and start your work");
             Thread.Sleep(2000);
         }
     }
